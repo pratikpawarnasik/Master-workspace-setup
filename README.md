@@ -6,6 +6,10 @@ BackEnd server: - https://dummyjson.com/
 
 ng add @ngrx/store@latest
 ng add @ngrx/effects@latest
+    "@ngrx/effects": "^16.0.0",
+    "@ngrx/entity": "^16.0.0",
+    "@ngrx/store": "^16.0.0",
+    "@ngrx/store-devtools": "^16.0.0",
 
 
 
@@ -77,7 +81,7 @@ master-workspace/
 
 
 
- Here are the CLI commands to create the folder structure in an Angular workspace
+Here are the CLI commands to create the folder structure in an Angular workspace
 Create a new Angular workspace:
 
 
@@ -92,11 +96,17 @@ npm install @ngrx/store @ngrx/effects to enable NgRx functionality in your proje
 
 Generate the core store-related files:
 
-ng generate module core/store --flat
+        ng generate module core/store --flat
+
+npm install @ngrx/schematics --save-dev
+
+
+
 ng generate action core/store/actions/auth
 ng generate action core/store/actions/users
 ng generate action core/store/actions/posts
 ng generate action core/store/actions/comments
+
 ng generate reducer core/store/reducers/auth --module=core/store
 ng generate reducer core/store/reducers/users --module=core/store
 ng generate reducer core/store/reducers/posts --module=core/store
