@@ -160,5 +160,6 @@ ng generate component modules/comments/components/comment-details
 Generate the shared component and service:
 
 ng generate component modules/shared/components/shared
+ng generate component modules/shared/components/header
+ng generate component modules/shared/components/navMenu
 ng generate service modules/shared/services/shared
-# Master-workspace-setup
