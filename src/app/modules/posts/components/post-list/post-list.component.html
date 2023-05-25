@@ -1,26 +1,26 @@
-<div class="">
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Secondary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Success card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-        </div>
-    </div>
+
+<!-- Show loading indicator or any other UI element -->
+<div *ngIf="(loading$ | async)" class="alert alert-success" role="alert">
+    Loading... (Loading added for testing purpose only...)
 </div>
+
+
+<div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
+    <div>{{ error }}</div>
+</div>
+
+<div class="card-columns">
+    <ng-container  *ngFor="let item of posts$ | async"  > 
+    <div class="card bg-light " (click)="viewMore(item.id)">
+      <div class="card-body"  [style.backgroundColor]="item.headerBackgroundColor">
+        <h5 class="card-title" >{{ (item.title.length>35)? (item.title |
+            slice:0:35)+'..':(item.title) }}</h5>
+        <p class="card-text">{{ (item.body.length>100)? (item.body | slice:0:100)+'...--':(item.body) }}</p>
+      </div>
+      <div *ngIf="item.reactions > 0" class="card-footer"  [style.backgroundColor]="item.backgroundColor">
+        <small class="">Here are {{item.reactions}} reactions from user!</small>
+      </div>
+    </div>
+</ng-container>
+  </div>
+

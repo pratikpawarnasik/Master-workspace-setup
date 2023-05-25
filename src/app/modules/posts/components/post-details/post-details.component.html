@@ -1,1 +1,23 @@
-<p>post-details works!</p>
+<div *ngIf="(loading$ | async)" class="alert alert-success" role="alert">
+    Loading... (Loading added for testing purpose only...)
+</div>
+
+<div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
+    <div>{{ error }}</div>
+</div>
+
+<div *ngIf="post$ | async as item" class="jumbotron">
+    <h1 class="display-4">{{ item.title }}</h1>
+    <p class="lead">{{ item.body }}</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+
+    <div class="list-group">
+        <button *ngFor="let tag of item.tags" type="button" class="list-group-item list-group-item-action ">
+            {{tag | titlecase}}
+        </button>
+    </div>
+</div>

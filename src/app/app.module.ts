@@ -6,6 +6,10 @@ import { SharedComponent } from './modules/shared/components/shared/shared.compo
 import { HeaderComponent } from './modules/shared/components/header/header.component';
 import { NavMenuComponent } from './modules/shared/components/nav-menu/nav-menu.component';
 import { UsersRoutingModule } from './modules/users/users-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,8 +19,15 @@ import { UsersRoutingModule } from './modules/users/users-routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+
     AppRoutingModule,
-    
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
