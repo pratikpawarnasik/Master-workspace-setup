@@ -1,40 +1,40 @@
-import { Posts } from '../interface/posts.interface';
+import { IPosts } from '../interface/posts.interface';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { PostState } from '../reducers/posts.reducer';
+import { IPostState } from '../reducers/posts.reducer';
 
-export const selectPostState = createFeatureSelector<PostState>('postsDataStore');
+export const selectPostState = createFeatureSelector<IPostState>('postsDataStore');
 
 export const selectData = createSelector(
   selectPostState,
-  (state: PostState) => state.data
+  (state: IPostState) => state.data
 );
 
 export const selectPosts = createSelector(
   selectData,
-  (data: Posts | null) => (data ? data.posts : [])
+  (data: IPosts | null) => (data ? data.posts : [])
 );
 
 export const selectLoading = createSelector(
   selectPostState,
-  (state: PostState) => state.loading
+  (state: IPostState) => state.loading
 );
 
 export const selectError = createSelector(
   selectPostState,
-  (state: PostState) => state.error
+  (state: IPostState) => state.error
 );
 
 
 // fetch data by ID
 // export const selectSinglePostId = createSelector(
 //   selectPostState,
-//   (state: PostState) => state.selectedData
+//   (state: IPostState) => state.postDetailsData
 // );
 
 
 export const selectSinglePost = createSelector(
   selectPostState,
-  (state: PostState) => state.selectedData
+  (state: IPostState) => state.postDetailsData
 );
 

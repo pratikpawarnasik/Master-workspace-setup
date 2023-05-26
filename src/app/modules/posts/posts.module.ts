@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { _postsEffects } from 'src/app/core/store/effects/posts.effects';
 import { _postsReducer } from 'src/app/core/store/reducers/posts.reducer';
-import { PostsService } from 'src/app/core/store/services/posts.service';
+import { PostsService } from 'src/app/core/services/posts.service';
 
 
 

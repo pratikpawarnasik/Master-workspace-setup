@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import colors from '../../../../core/data/colors.json';
 import { fetchData } from 'src/app/core/store/actions/posts.actions';
-import { Post } from 'src/app/core/store/interface/posts.interface';
+import { IPost } from 'src/app/core/store/interface/posts.interface';
 import { selectPosts, selectLoading, selectError } from 'src/app/core/store/selectors/posts.selectors';
 
 
@@ -16,7 +16,7 @@ import { selectPosts, selectLoading, selectError } from 'src/app/core/store/sele
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent {
-  posts$!: Observable<Post[]>;
+  posts$!: Observable<IPost[]>;
   loading$!: Observable<boolean>;
   error$!: Observable<string | null>;
   colorObject: any = colors;

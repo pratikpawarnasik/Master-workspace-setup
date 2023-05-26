@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Post } from 'src/app/core/store/interface/posts.interface';
+import { IPost } from 'src/app/core/store/interface/posts.interface';
 import { fetchDataById } from 'src/app/core/store/actions/posts.actions';
 import { selectSinglePost, selectLoading, selectError } from 'src/app/core/store/selectors/posts.selectors';
 @Component({
@@ -14,7 +14,7 @@ import { selectSinglePost, selectLoading, selectError } from 'src/app/core/store
 })
 
 export class PostDetailsComponent implements OnInit {
-  post$!: Observable<Post | null>;
+  post$!: Observable<IPost | null>;
   loading$!: Observable<boolean>;
   error$!: Observable<string | null>;
 

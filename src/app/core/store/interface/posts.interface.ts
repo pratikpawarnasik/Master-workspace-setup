@@ -1,4 +1,10 @@
-export interface Post {
+export interface IPostState {
+  data: IPosts | null;
+  postDetailsData: IPost | null ; // Single record
+  loading: boolean;
+  error: string | null;
+}
+export interface IPost {
     id: number;
     title: string;
     body: string;
@@ -10,13 +16,13 @@ export interface Post {
     headerBackgroundColor:string;
   }
   
-  export interface Posts {
-    posts: Post[];
+  export interface IPosts {
+    posts: IPost[];
     total: number;
     skip: number;
     limit: number;
   }
-  export interface DataById {
+  export interface IDataById {
     id: number;
     title: string;
     body: string;

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Posts, DataById, Post } from '../interface/posts.interface';
+import { IPosts, IDataById, IPost } from '../interface/posts.interface';
 
 // Define your action type and payload, if any
 // export const myAction = createAction('[Auth] My Action', props<{ payload: any }>());
@@ -37,7 +37,7 @@ export const fetchData = createAction('[Posts] Fetch Posts');
 
 export const fetchDataSuccess = createAction(
   POST_LIST_REQUEST,
-  props<{ data: Posts }>()
+  props<{ data: IPosts }>()
 );
 
 export const fetchDataFailure = createAction(
