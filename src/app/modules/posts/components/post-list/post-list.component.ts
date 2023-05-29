@@ -29,13 +29,13 @@ export class PostListComponent {
 
 
   ngOnInit() {
-
+     // Dispatch the fetchData action to fetch all data
+     this.store.dispatch(fetchData());
     this.posts$ = this.store.select(selectPosts);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
 
-    // Dispatch the fetchData action to fetch all data
-    this.store.dispatch(fetchData());
+   
 
     this.posts$.subscribe(postsTempData => {
       console.log('posts:::', postsTempData);
@@ -52,10 +52,6 @@ export class PostListComponent {
       })
     );
 
-    // Subscribe to the merged posts
-    this.posts$.subscribe(posts => {
-      console.log('Merged Posts:', posts);
-    });
   }
 
 

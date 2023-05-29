@@ -3,10 +3,15 @@
 
 import { createReducer, on } from '@ngrx/store';
 import * as DataActions from '../actions/posts.actions';
-import { IPost, IPostState, IPosts } from '../interface/posts.interface';
+import { IPost, IPosts } from '../interface/posts.interface';
 
 
-
+export interface IPostState {
+  data: IPosts | null;
+  postDetailsData: IPost | null ; // Single record
+  loading: boolean;
+  error: string | null;
+}
 const initialState: IPostState = {
   data: null,
   postDetailsData: null, // Single record
@@ -28,6 +33,7 @@ export const _postsReducer = createReducer(
     loading: false,
     error: null
   })),
+  
 
   on(DataActions.fetchDataFailure, (state, { error }) => ({
     ...state,
@@ -56,6 +62,6 @@ export const _postsReducer = createReducer(
   }))
 
 );
-export { IPostState };
+
 
 

@@ -17,19 +17,19 @@ export class PostsService {
     ) {
       }
 
-    fetchData(): Observable<IPosts> {
-        return this.http.get<IPosts>( this.urlConfig._getPostsUrl()).pipe(delay(2000));
+    fetchPostsData(): Observable<IPosts> {
+        return this.http.get<IPosts>( this.urlConfig._getPostsUrl());
     }
     
     // Fetch data by ID service call
-    fetchDataById(id: number): Observable<IPost[]> {
+    fetchPostById(id: number): Observable<IPost[]> {
       const url = `${this.apiUrl}/${id}`;
       return this.http.get<IPost[]>(this.urlConfig._getPostByIDUrl(id));
     }
 
-    // Fetch comment by ID service call
-    fetchCommentById(id: number): Observable<any> {
-      const url = `${this.apiUrl}/posts/${id}/comments`;
-      return this.http.get<any>(url);
-    }
+    // // Fetch comment by ID service call
+    // fetchCommentById(id: number): Observable<any> {
+    //   const url = `${this.apiUrl}/posts/${id}/comments`;
+    //   return this.http.get<any>(url);
+    // }
 }

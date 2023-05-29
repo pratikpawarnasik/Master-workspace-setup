@@ -1,9 +1,4 @@
-export interface IPostState {
-  data: IPosts | null;
-  postDetailsData: IPost | null ; // Single record
-  loading: boolean;
-  error: string | null;
-}
+
 export interface IPost {
     id: number;
     title: string;
