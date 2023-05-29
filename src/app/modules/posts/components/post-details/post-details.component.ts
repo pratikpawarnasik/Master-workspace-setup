@@ -26,9 +26,7 @@ export class PostDetailsComponent implements OnInit {
     this.error$ = this.store.select(selectError);
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.store.dispatch(fetchDataById({ id }));
-    this.post$.subscribe(postData => {
-      console.log('View Post:', postData);
-    });
+   
   }
 
   ngOnInit() {
@@ -37,19 +35,13 @@ export class PostDetailsComponent implements OnInit {
       console.log('Post details:', posts);
       // You can perform further operations with the array of post details
     });
-    
-    this.store.select(selectSinglePost).subscribe(postDetailsdata => {
-      // if (postDetailsdata) {
-      //   const tags = postDetailsdata.tags;
-      //   console.log('Tags:', tags);
-      // }
+
       this.post$.subscribe(postDetailsData => {
         if (postDetailsData && postDetailsData.length > 0) {
           const tags = postDetailsData[0].tags; // Access the 'tags' property of the first item in the array
           console.log('tags:', tags);
         }
       });
-    });
     // Dispatch the fetchDataById action to fetch data by ID
     
   }

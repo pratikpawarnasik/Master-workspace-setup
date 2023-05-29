@@ -25,10 +25,13 @@ export class PostListComponent {
     private router: Router,
     private store: Store,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) { 
+    console.log("---constructor---");
+  }
 
 
   ngOnInit() {
+    console.log("---Inside ngOnInit---");
      // Dispatch the fetchData action to fetch all data
      this.store.dispatch(fetchData());
     this.posts$ = this.store.select(selectPosts);
@@ -41,8 +44,11 @@ export class PostListComponent {
       console.log('posts:::', postsTempData);
     });
     this.cdr.detectChanges();
+this.loading$.subscribe(loading => {
+  console.log('Post lisr --> loading:', loading);
+});
 
-    this.posts$ = this.store.select(selectPosts).pipe(
+    this.posts$ = this.posts$.pipe(
       map(posts => {
         return posts.map(post => {
           const colorIndex = Math.floor(Math.random() * this.colorObject.length);
@@ -57,6 +63,25 @@ export class PostListComponent {
 
   viewMore(val: any) {
     this.router.navigate(['/posts/details/' + val]);
+  }
+
+  ngDoCheck() {
+    console.log("---Inside ngDoCheck---");
+  }
+  ngAfterContentInit() {
+    console.log("---Inside ngAfterContentInit---");
+  }
+  ngAfterContentChecked() {
+    console.log("---Inside ngAfterContentChecked---");
+  }
+  ngAfterViewInit() {
+    console.log("---Inside ngAfterViewInit---");
+  }  
+  ngAfterViewChecked() {
+    console.log("---Inside ngAfterViewChecked---");    
+  }
+  ngOnDestroy() {
+    console.log("---Inside ngOnDestroy---");      
   }
 
 }   

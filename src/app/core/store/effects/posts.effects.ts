@@ -41,35 +41,6 @@ fetchData$ = createEffect(() =>
 
   // Fetch data by ID
 
-  // fetchDataById$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(DataActions.fetchDataById),
-  //     mergeMap(action =>
-  //       this._postsService.fetchPostById(action.id).pipe(map((response) => DataActions.fetchDataByIdSuccess({ data: response })),
-  //         catchError(error => of(DataActions.fetchDataByIdFailure({ error: error.message })))
-  //       )
-  //     )
-  //   )
-  // );
-
-
-// fetchDataById$ = createEffect(() =>
-//   this.actions$.pipe(
-//     ofType(DataActions.fetchDataById),
-//     withLatestFrom(this.store.select(selectSinglePost)),
-//     filter(([action, selectedPost]) => !selectedPost || selectedPost.id !== action.id),
-//     switchMap(([action, selectedPost]) =>
-//       this._postsService.fetchPostById(action.id).pipe(
-//         map((responseData) => {
-//           const updatedPostDetailsData = selectedPost ? [...selectedPost, responseData] : [responseData];
-//           return DataActions.fetchDataByIdSuccess({ data: updatedPostDetailsData });
-//         }),
-//         catchError((error) => of(DataActions.fetchDataByIdFailure({ error: error.message })))
-//       )
-//     )
-//   )
-// );
-
 
 fetchDataById$ = createEffect(() =>
   this.actions$.pipe(
@@ -87,9 +58,9 @@ fetchDataById$ = createEffect(() =>
         }),
         catchError((error) => of(DataActions.fetchDataByIdFailure({ error: error.message })))
       )
-    )
+    ),
+    tap(() => this.store.dispatch(DataActions.fetchDataByIdLoading({ loading: false })))
   )
 );
-
 
 }

@@ -29,6 +29,9 @@ export const fetchDataFailure = createAction(
 export const fetchDataById = createAction('[Posts] Fetch Post By ID', props<{ id: number }>());
 export const fetchDataByIdSuccess = createAction('[Posts] Fetch Post By ID Success', props<{ data: any  }>());
 export const fetchDataByIdFailure = createAction('[Posts] Fetch Post By ID Failure', props<{ error: string }>());
+// Action to handle loading state
+export const fetchDataByIdLoading = createAction('[Posts] Post Data By Id Loading', props<{ loading: boolean }>());
+// export const fetchDataLoading = createAction('[Posts] Fetch Data Loading', props<{ loading: boolean }>());
 
 
 
