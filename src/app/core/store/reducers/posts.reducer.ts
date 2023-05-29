@@ -8,13 +8,13 @@ import { IPost, IPosts } from '../interface/posts.interface';
 
 export interface IPostState {
   data: IPosts | null;
-  postDetailsData: IPost | null ; // Single record
+  postDetailsData: IPost[] | null; 
   loading: boolean;
   error: string | null;
 }
 const initialState: IPostState = {
   data: null,
-  postDetailsData: null, // Single record
+  postDetailsData: null,
   loading: false,
   error: null
 };
@@ -49,10 +49,16 @@ export const _postsReducer = createReducer(
     error: null,
   })),
 
+  // on(DataActions.fetchDataByIdSuccess, (state, { data }) => ({
+  //   ...state,
+  //   postDetailsData: [...state.postDetailsData, data],
+  //   loading: false,
+  // })),
   on(DataActions.fetchDataByIdSuccess, (state, { data }) => ({
     ...state,
-    postDetailsData: data,
+    postDetailsData: data, // Set the fetched data in the state
     loading: false,
+    error: null
   })),
   
   on(DataActions.fetchDataByIdFailure, (state, { error }) => ({

@@ -4,7 +4,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { catchError, delay, filter, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import * as  DataActions from '../actions/posts.actions';
 import { PostsService } from '../../services/posts.service';
-import { selectData } from '../selectors/posts.selectors';
+import { selectData, selectSinglePost } from '../selectors/posts.selectors';
 import { Store } from '@ngrx/store';
 const responseData= {
   loading:false
@@ -41,16 +41,55 @@ fetchData$ = createEffect(() =>
 
   // Fetch data by ID
 
-  fetchDataById$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(DataActions.fetchDataById),
-      mergeMap(action =>
-        this._postsService.fetchPostById(action.id).pipe(map((response) => DataActions.fetchDataByIdSuccess({ data: response })),
-          catchError(error => of(DataActions.fetchDataByIdFailure({ error: error.message })))
-        )
+  // fetchDataById$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(DataActions.fetchDataById),
+  //     mergeMap(action =>
+  //       this._postsService.fetchPostById(action.id).pipe(map((response) => DataActions.fetchDataByIdSuccess({ data: response })),
+  //         catchError(error => of(DataActions.fetchDataByIdFailure({ error: error.message })))
+  //       )
+  //     )
+  //   )
+  // );
+
+
+// fetchDataById$ = createEffect(() =>
+//   this.actions$.pipe(
+//     ofType(DataActions.fetchDataById),
+//     withLatestFrom(this.store.select(selectSinglePost)),
+//     filter(([action, selectedPost]) => !selectedPost || selectedPost.id !== action.id),
+//     switchMap(([action, selectedPost]) =>
+//       this._postsService.fetchPostById(action.id).pipe(
+//         map((responseData) => {
+//           const updatedPostDetailsData = selectedPost ? [...selectedPost, responseData] : [responseData];
+//           return DataActions.fetchDataByIdSuccess({ data: updatedPostDetailsData });
+//         }),
+//         catchError((error) => of(DataActions.fetchDataByIdFailure({ error: error.message })))
+//       )
+//     )
+//   )
+// );
+
+
+fetchDataById$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(DataActions.fetchDataById),
+    withLatestFrom(this.store.select(selectSinglePost)),
+    filter(([action, selectedPosts]) => {
+      const postId = action.id;
+      return !selectedPosts || !selectedPosts.some(post => post.id === postId);
+    }),
+    switchMap(([action, selectedPosts]) =>
+      this._postsService.fetchPostById(action.id).pipe(
+        map((responseData) => {
+          const updatedPostDetailsData = selectedPosts ? [...selectedPosts, responseData] : [responseData];
+          return DataActions.fetchDataByIdSuccess({ data: updatedPostDetailsData });
+        }),
+        catchError((error) => of(DataActions.fetchDataByIdFailure({ error: error.message })))
       )
     )
-  );
+  )
+);
 
- 
+
 }

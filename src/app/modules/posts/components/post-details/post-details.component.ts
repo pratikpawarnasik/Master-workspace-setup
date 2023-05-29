@@ -14,7 +14,7 @@ import { selectSinglePost, selectLoading, selectError } from 'src/app/core/store
 })
 
 export class PostDetailsComponent implements OnInit {
-  post$!: Observable<IPost | null>;
+  post$!: Observable<IPost[] | null>;
   loading$!: Observable<boolean>;
   error$!: Observable<string | null>;
 
@@ -32,15 +32,25 @@ export class PostDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
+    this.post$.subscribe(posts => {
+      console.log('Post details:', posts);
+      // You can perform further operations with the array of post details
+    });
+    
     this.store.select(selectSinglePost).subscribe(postDetailsdata => {
-      if (postDetailsdata) {
-        const tags = postDetailsdata.tags;
-        console.log('Tags:', tags);
-      }
+      // if (postDetailsdata) {
+      //   const tags = postDetailsdata.tags;
+      //   console.log('Tags:', tags);
+      // }
+      this.post$.subscribe(postDetailsData => {
+        if (postDetailsData && postDetailsData.length > 0) {
+          const tags = postDetailsData[0].tags; // Access the 'tags' property of the first item in the array
+          console.log('tags:', tags);
+        }
+      });
     });
     // Dispatch the fetchDataById action to fetch data by ID
-    
     
   }
 }

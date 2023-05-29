@@ -7,8 +7,8 @@
 </div>
 
 <div *ngIf="post$ | async as item" class="jumbotron">
-    <h1 class="display-4">{{ item.title }}</h1>
-    <p class="lead">{{ item.body }}</p>
+    <h1 class="display-4">{{ item[0].title }}</h1>
+    <p class="lead">{{ item[0].body }}</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <p class="lead">
@@ -16,7 +16,7 @@
     </p>
 
     <div class="list-group">
-        <button *ngFor="let tag of item.tags" type="button" class="list-group-item list-group-item-action ">
+        <button *ngFor="let tag of item[0].tags" type="button" class="list-group-item list-group-item-action ">
             {{tag | titlecase}}
         </button>
     </div>

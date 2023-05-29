@@ -9,6 +9,7 @@ export interface IPost {
     backgroundColor:string;
     fontColor:string;
     headerBackgroundColor:string;
+    
   }
   
   export interface IPosts {
