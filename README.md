@@ -163,3 +163,57 @@ ng generate component modules/shared/components/shared
 ng generate component modules/shared/components/header
 ng generate component modules/shared/components/navMenu
 ng generate service modules/shared/services/shared
+
+
+
+
+
+
+
+
+
+
+TO use tform library follow below steps,
+
+
+
+
+Link the "tform" library globally:
+
+In the terminal, navigate to the root directory of the "tform" library.
+Run the command npm link. This will create a symlink for the library globally on your machine.
+Link the "tform" library in your project:
+
+In the terminal, navigate to the root directory of your project.
+Run the command npm link tform. This will create a symlink in your project's node_modules folder, linking to the globally installed "tform" library.
+Import and use the "tform" library in your project:
+
+In your Angular project, you can now import the components, services, or other resources from the "tform" library and use them as if they were installed from npm.
+Update your project's code to import and use the desired components or services from the "tform" library.
+
+
+https://www.knowledgehut.com/blog/web-development/how-to-build-library-for-angular-apps
+<!-- npm publish -if want to publish -->
+ng generate library tsiform
+ng build tsiform
+cd dist/tsiform
+npm link
+npm link tsiform
+
+cd ..
+cd ..
+npm install ./dist/tsiform
+
+
+ng build tform
+ng s
+
+
+
+To build and publish tsiform
+
+ng build tsiform --configuration=production
+cd dist/tsiform
+npm pack
+npm publish tsiform-0.0.2.tgz
+npm publish tsiform-0.0.2.tgz --registry=https://registry.npmjs.com/

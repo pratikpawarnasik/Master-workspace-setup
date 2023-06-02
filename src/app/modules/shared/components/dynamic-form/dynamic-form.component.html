@@ -1,0 +1,15 @@
+<div>
+    <H2>{{formData.formName}}</H2>
+    <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <div *ngFor="let control of formData.fields" class="form-row">
+            <app-form-control [control]="control" [form]="form"></app-form-control>
+        </div>
+
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{formData.actionButtons[0].lable}}</button>
+        </div>
+    </form>
+
+</div>
+</div>

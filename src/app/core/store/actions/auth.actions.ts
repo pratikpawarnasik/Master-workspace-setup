@@ -1,5 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 
-// Define your action type and payload, if any
-export const myAction = createAction('[Auth] My Action', props<{ payload: any }>());
+export const login = createAction(
+  '[Auth] Login',
+  props<{ username: string; password: string }>()
+);
 
+export const loginSuccess = createAction(
+  '[Auth] Login Success',
+  props<{ user: any }>()
+);
+
+export const loginFailure = createAction(
+  '[Auth] Login Failure',
+  props<{ error: string }>()
+);

@@ -1,0 +1,40 @@
+{
+  "formName":"User Registration",
+  "actionButtons": [
+    {
+      "lable": "Submit"
+    }
+  ],
+  "fields": [
+    {
+      "type": "text",
+      "name": "firstName",
+      "label": "First Name",
+      "required": true
+    },
+    {
+      "type": "email",
+      "name": "email",
+      "label": "Email",
+      "required": false
+    },
+    {
+      "type": "select",
+      "name": "country",
+      "label": "Country",
+      "required": true,
+      "options": [
+        "USA",
+        "Canada",
+        "UK",
+        "Australia"
+      ]
+    },
+    {
+      "type": "textarea",
+      "name": "address",
+      "label": "Address",
+      "required": false
+    }
+  ]
+}

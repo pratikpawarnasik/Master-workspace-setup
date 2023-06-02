@@ -21,6 +21,29 @@
     "useDefineForClassFields": false,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "paths": {
+      "my-lb": [
+        "dist/my-lb"
+      ],
+      "my-lib": [
+        "dist/my-lib"
+      ],
+      "test": [
+        "dist/test"
+      ],
+      "testLib": [
+        "dist/test-lib"
+      ],
+      "tform": [
+        "dist/tform"
+      ],
+      "tsform": [
+        "dist/tsform"
+      ],
+      "tsiform": [
+        "dist/tsiform"
+      ]
+    },
     "lib": [
       "ES2022",
       "dom"
