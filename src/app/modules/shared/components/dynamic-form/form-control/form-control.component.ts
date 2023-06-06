@@ -11,4 +11,11 @@ export class FormControlComponent {
   
   @Input() control!: any;
   @Input() form!: FormGroup;
+  @Input() col!: number;
+  isFormControlInvalid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+    return control ? (control.invalid && control.touched) : false;
+  }
+  
+  
 }

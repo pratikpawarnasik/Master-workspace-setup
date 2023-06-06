@@ -1,40 +1,74 @@
 {
-  "formName":"User Registration",
+  "formName": "User Registration",
   "actionButtons": [
     {
-      "lable": "Submit"
+      "lable": "Submit",
+      "methodCall": "",
+      "callback": ""
     }
   ],
-  "fields": [
+  "formGroups": [
     {
-      "type": "text",
-      "name": "firstName",
-      "label": "First Name",
-      "required": true
-    },
-    {
-      "type": "email",
-      "name": "email",
-      "label": "Email",
-      "required": false
-    },
-    {
-      "type": "select",
-      "name": "country",
-      "label": "Country",
-      "required": true,
-      "options": [
-        "USA",
-        "Canada",
-        "UK",
-        "Australia"
+      "groupName": "basic",
+      "col": 6,
+      "fields": [
+        {
+          "type": "text",
+          "name": "firstName",
+          "label": "First Name",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "lastName",
+          "label": "Last Name",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "Email",
+          "required": false
+        }
+       
       ]
     },
     {
-      "type": "textarea",
-      "name": "address",
-      "label": "Address",
-      "required": false
+      "groupName": "address",
+      "col": 12,
+      "fields": [
+        {
+          "type": "select",
+          "name": "country",
+          "label": "Country",
+          "required": true,
+          "options": [
+            "USA",
+            "Canada",
+            "UK",
+            "Australia"
+          ]
+        },
+        {
+          "type": "textarea",
+          "name": "address",
+          "label": "Address",
+          "required": false
+        }
+      ]
+    },
+    {
+      "groupName": "check box",
+      "col": 12,
+      "fields": [
+        
+        {
+          "type": "checkbox",
+          "name": "checkmeout",
+          "label": "Check me out",
+          "required": true
+        }
+      ]
     }
   ]
 }

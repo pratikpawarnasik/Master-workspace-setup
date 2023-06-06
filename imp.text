@@ -1,0 +1,225 @@
+'text': inputFieldTemplate('text'),
+  'password': inputFieldTemplate('password'),
+  'date': inputFieldTemplate('date'),
+  'datetime': inputFieldTemplate('datetime'),
+  'datetime-local': inputFieldTemplate('datetime-local'),
+  'email': inputFieldTemplate('email'),
+  'month': inputFieldTemplate('month'),
+  'number': inputFieldTemplate('number'),
+  'search': inputFieldTemplate('search'),
+  'tel': inputFieldTemplate('tel'),
+  'time': inputFieldTemplate('time'),
+  'url': inputFieldTemplate('url'),
+  'week': inputFieldTemplate('week'),
+  'range': {
+    'template': '<div class="range"><input type="range" ' +
+      '<%= (fieldHtmlClass ? "class=\'" + fieldHtmlClass + "\' " : "") %>' +
+      'name="<%= node.name %>" value="<%= escape(value) %>" id="<%= id %>"' +
+      ' aria-label="<%= node.title ? escape(node.title) : node.name %>"' +
+      '<%= (node.disabled? " disabled" : "")%>' +
+      ' min=<%= range.min %>' +
+      ' max=<%= range.max %>' +
+      ' step=<%= range.step %>' +
+      '<%= (node.schemaElement && node.schemaElement.required ? " required=\'required\'" : "") %>' +
+      ' /><% if (range.indicator) { %><span class="range-value" rel="<%= id %>"><%= escape(value) %></span><% } %></div>',
+    'fieldtemplate': true,
+    'inputfield': true,
+    'onInput': function(evt, elt) {
+      const valueIndicator = document.querySelector('span.range-value[rel="' + elt.id + '"]');
+      if (valueIndicator) {
+        valueIndicator.innerText = evt.target.value;
+      }
+    },
+    'onBeforeRender': function (data, node) {
+      data.range = {
+        min: 1,
+        max: 100,
+        step: 1,
+        indicator: false
+      };
+      if (!node || !node.schemaElement) return;
+      if (node.formElement && node.formElement.step) {
+        data.range.step = node.formElement.step;
+      }
+      if (node.formElement && node.formElement.indicator) {
+        data.range.indicator = node.formElement.indicator;
+      }
+      if (typeof node.schemaElement.minimum !== 'undefined') {
+        if (node.schemaElement.exclusiveMinimum) {
+          data.range.min = node.schemaElement.minimum + data.range.step;
+        }
+        else {
+          data.range.min = node.schemaElement.minimum;
+        }
+      }
+      if (typeof node.schemaElement.maximum !== 'undefined') {
+        if (node.schemaElement.exclusiveMaximum) {
+          data.range.max = node.schemaElement.maximum - data.range.step;
+        }
+        else {
+          data.range.max = node.schemaElement.maximum;
+        }
+      }
+    }
+  },
+  'color':{
+    'template':'<input type="text" ' +
+      '<%= (fieldHtmlClass ? "class=\'" + fieldHtmlClass + "\' " : "") %>' +
+      'name="<%= node.name %>" value="<%= escape(value) %>" id="<%= id %>"' +
+      ' aria-label="<%= node.title ? escape(node.title) : node.name %>"' +
+      '<%= (node.disabled? " disabled" : "")%>' +
+      '<%= (node.schemaElement && node.schemaElement.required ? " required=\'required\'" : "") %>' +
+      ' />',
+    'fieldtemplate': true,
+    'inputfield': true,
+    'onInsert': function(evt, node) {
+      $(node.el).find('#' + escapeSelector(node.id)).spectrum({
+        preferredFormat: "hex",
+        showInput: true
+      });
+    }
+  },
+  'textarea':{
+    'template':'<textarea id="<%= id %>" name="<%= node.name %>" ' +
+      '<%= (fieldHtmlClass ? "class=\'" + fieldHtmlClass + "\' " : "") %>' +
+      'style="height:<%= elt.height || "150px" %>;width:<%= elt.width || "100%" %>;"' +
+      ' aria-label="<%= node.title ? escape(node.title) : node.name %>"' +
+      '<%= (node.disabled? " disabled" : "")%>' +
+      '<%= (node.readOnly ? " readonly=\'readonly\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.minLength ? " minlength=\'" + node.schemaElement.minLength + "\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.maxLength ? " maxlength=\'" + node.schemaElement.maxLength + "\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.required ? " required=\'required\'" : "") %>' +
+      '<%= (node.placeholder? " placeholder=" + \'"\' + escape(node.placeholder) + \'"\' : "")%>' +
+      '><%= value %></textarea>',
+    'fieldtemplate': true,
+    'inputfield': true
+  },
+  'wysihtml5':{
+    'template':'<textarea id="<%= id %>" name="<%= node.name %>" style="height:<%= elt.height || "300px" %>;width:<%= elt.width || "100%" %>;"' +
+      ' aria-label="<%= node.title ? escape(node.title) : node.name %>"' +
+      '<%= (fieldHtmlClass ? "class=\'" + fieldHtmlClass + "\' " : "") %>' +
+      '<%= (node.disabled? " disabled" : "")%>' +
+      '<%= (node.readOnly ? " readonly=\'readonly\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.minLength ? " minlength=\'" + node.schemaElement.minLength + "\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.maxLength ? " maxlength=\'" + node.schemaElement.maxLength + "\'" : "") %>' +
+      '<%= (node.schemaElement && node.schemaElement.required ? " required=\'required\'" : "") %>' +
+      '<%= (node.placeholder? " placeholder=" + \'"\' + escape(node.placeholder) + \'"\' : "")%>' +
+      '><%= value %></textarea>',
+    'fieldtemplate': true,
+    'inputfield': true,
+    'onInsert': function (evt, node) {
+      var setup = function () {
+        //protect from double init
+        if ($(node.el).data("wysihtml5")) return;
+        $(node.el).data("wysihtml5_loaded",true);
+
+        $(node.el).find('#' + escapeSelector(node.id)).wysihtml5({
+          "html": true,
+          "link": true,
+          "font-styles":true,
+          "image": false,
+          "events": {
+            "load": function () {
+              // In chrome, if an element is required and hidden, it leads to
+              // the error 'An invalid form control with name='' is not focusable'
+              // See http://stackoverflow.com/questions/7168645/invalid-form-control-only-in-google-chrome
+              $(this.textareaElement).removeAttr('required');
+            }
+          }
+        });
+      };
+
+      // Is there a setup hook?
+      if (window.jsonform_wysihtml5_setup) {
+        window.jsonform_wysihtml5_setup(setup);
+        return;
+      }
+
+      // Wait until wysihtml5 is loaded
+      var itv = window.setInterval(function() {
+        if (window.wysihtml5) {
+          window.clearInterval(itv);
+          setup();
+        }
+      },1000);
+    }
+  },
+  'ace':{
+    'template':'<div id="<%= id %>" style="position:relative;height:<%= elt.height || "300px" %>;"><div id="<%= id %>__ace" style="width:<%= elt.width || "100%" %>;height:<%= elt.height || "300px" %>;"></div><input type="hidden" name="<%= node.name %>" id="<%= id %>__hidden" value="<%= escape(value) %>"/></div>',
+    'fieldtemplate': true,
+    'inputfield': true,
+    'onInsert': function (evt, node) {
+      var setup = function () {
+        var formElement = node.formElement || {};
+        var ace = window.ace;
+        var editor = ace.edit($(node.el).find('#' + escapeSelector(node.id) + '__ace').get(0));
+        var idSelector = '#' + escapeSelector(node.id) + '__hidden';
+        // Force editor to use "\n" for new lines, not to bump into ACE "\r" conversion issue
+        // (ACE is ok with "\r" on pasting but fails to return "\r" when value is extracted)
+        editor.getSession().setNewLineMode('unix');
+        editor.renderer.setShowPrintMargin(false);
+        editor.setTheme("ace/theme/"+(formElement.aceTheme||"twilight"));
+
+        if (formElement.aceMode) {
+          editor.getSession().setMode("ace/mode/"+formElement.aceMode);
+        }
+        editor.getSession().setTabSize(2);
+
+        // Set the contents of the initial manifest file
+        editor.getSession().setValue(node.value||"");
+
+        //TODO: this is clearly sub-optimal
+        // 'Lazily' bind to the onchange 'ace' event to give
+        // priority to user edits
+        var lazyChanged = _.debounce(function () {
+          $(node.el).find(idSelector).val(editor.getSession().getValue());
+          $(node.el).find(idSelector).change();
+        }, 600);
+        editor.getSession().on('change', lazyChanged);
+
+        editor.on('blur', function() {
+          $(node.el).find(idSelector).change();
+          $(node.el).find(idSelector).trigger("blur");
+        });
+        editor.on('focus', function() {
+          $(node.el).find(idSelector).trigger("focus");
+        });
+      };
+
+      // Is there a setup hook?
+      if (window.jsonform_ace_setup) {
+        window.jsonform_ace_setup(setup);
+        return;
+      }
+
+      // Wait until ACE is loaded
+      var itv = window.setInterval(function() {
+        if (window.ace) {
+          window.clearInterval(itv);
+          setup();
+        }
+      },1000);
+    }
+  },
+  'checkbox':{
+    'template': '<div class="checkbox"><label><input type="checkbox" id="<%= id %>" ' +
+      '<%= (fieldHtmlClass ? " class=\'" + fieldHtmlClass + "\'": "") %>' +
+      'name="<%= node.name %>" value="1" <% if (value) {%>checked<% } %>' +
+      '<%= (node.disabled? " disabled" : "")%>' +
+      '<%= (node.schemaElement && node.schemaElement.required && (node.schemaElement.type !== "boolean") ? " required=\'required\'" : "") %>' +
+      ' /><%= node.inlinetitle || "" %>' +
+      '</label></div>',
+    'fieldtemplate': true,
+    'inputfield': true,
+    'getElement': function (el) {
+      return $(el).parent().get(0);
+    }
+  },
+  'file':{
+    'template':'<input class="input-file" id="<%= id %>" name="<%= node.name %>" type="file" ' +
+      '<%= (node.schemaElement && node.schemaElement.required ? " required=\'required\'" : "") %>' +
+      '<%= (node.formElement && node.formElement.accept ? (" accept=\'" + node.formElement.accept + "\'") : "") %>' +
+      '/>',
+    'fieldtemplate': true,
+    'inputfield': true
+  },
