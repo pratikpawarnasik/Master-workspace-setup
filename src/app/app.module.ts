@@ -16,34 +16,35 @@ import { DynamicFormService } from './core/services/dynamic-form.service';
 import { FormControlComponent } from './modules/shared/components/dynamic-form/form-control/form-control.component';
 import { ControlsComponent } from './modules/shared/components/dynamic-form/controls/controls.component';
 import { MyLibModule } from 'my-lib';
-import { TsiformModule } from 'tsiform';
 import { HomeComponent } from './modules/shared/components/home/home.component';
+import { JsonFormTemplateModule } from "../../projects/json-form-template/src/lib/json-form-template.module";
 @NgModule({
-  declarations: [
-    AppComponent,
-    SharedComponent,
-    HeaderComponent,
-    DynamicFormComponent,
-    FormControlComponent,
-    ControlsComponent,
-    HomeComponent
-    
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot(),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    }),
-    MyLibModule,
-    TsiformModule
-  ],
-  providers: [DynamicFormService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SharedComponent,
+        HeaderComponent,
+        DynamicFormComponent,
+        FormControlComponent,
+        ControlsComponent,
+        HomeComponent,
+        SharedComponent
+    ],
+    providers: [DynamicFormService],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot(),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+        }),
+        MyLibModule,
+        JsonFormTemplateModule,
+        
+    ]
 })
 export class AppModule { }
