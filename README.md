@@ -194,26 +194,26 @@ Update your project's code to import and use the desired components or services 
 
 https://www.knowledgehut.com/blog/web-development/how-to-build-library-for-angular-apps
 <!-- npm publish -if want to publish -->
-ng generate library tsiform
-ng build tsiform
-cd dist/tsiform
+ng generate library jsonFormTemplate
+ng build jsonFormTemplate
+cd dist/json-form-template
 npm link
-npm link tsiform
+npm link json-form-template
 
 cd ..
 cd ..
-npm install ./dist/tsiform
+npm install ./dist/json-form-template
 
 
-ng build tform
+ng build jsonFormTemplate
 ng s
 
 
 
-To build and publish tsiform
+To build and publish jsonFormTemplate
 
-ng build tsiform --configuration=production
-cd dist/tsiform
+ng build jsonFormTemplate --configuration=production
+cd dist/json-form-template
 npm pack
-npm publish tsiform-0.0.2.tgz
-npm publish tsiform-0.0.2.tgz --registry=https://registry.npmjs.com/
+npm publish jsonFormTemplate-0.0.3.tgz
+npm publish jsonFormTemplate-0.0.1.tgz --registry=https://registry.npmjs.com/

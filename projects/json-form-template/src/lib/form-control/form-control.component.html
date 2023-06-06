@@ -1,0 +1,68 @@
+<style>
+  div span{
+    color: red;
+  }
+</style>
+
+<div class="form-row" [formGroup]="form">
+  <div [ngClass]="'form-group col-md-' + col" [ngSwitch]="control.type">
+    <label *ngIf="control.type !== 'checkbox'" for="{{ control.name }}">{{ control.label }}</label>
+
+
+
+    <!-- Render text input -->
+    <div *ngSwitchCase="'text'">
+      <!-- <label for="{{ control.name }}">{{ control.label }}</label> -->
+      <input type="text" [formControlName]="control.name" class="form-control" id="{{ control.name }}"
+        placeholder="Example input">
+      <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
+      </div>
+    </div>
+
+    <!-- Render email input -->
+    <div *ngSwitchCase="'email'">
+      <!-- <label for="{{ control.name }}">{{ control.label }}</label> -->
+      <input [type]="'email'" [formControlName]="control.name" class="form-control"
+        [ngClass]="{'error': control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched}">
+      <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+        <span *ngIf="form.get(control.name)?.errors?.['email']">Invalid email format</span>
+        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
+      </div>
+    </div>
+
+    <!-- Render select dropdown -->
+    <div *ngSwitchCase="'select'">
+      <!-- <label for="{{ control.name }}">{{ control.label }}</label> -->
+      <select [formControlName]="control.name" class="form-control">
+        <option value="">Select an option</option>
+        <option *ngFor="let option of control.options" [value]="option">{{ option }}</option>
+      </select>
+      <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span><br />
+      </div>
+    </div>
+
+    <!-- Render textarea -->
+    <div *ngSwitchCase="'textarea'">
+      <!-- <label for="{{ control.name }}">{{ control.label }}</label> -->
+      <textarea class="form-control" [formControlName]="control.name" rows="4" cols="50"></textarea>
+      <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
+      </div>
+    </div>
+
+    <!-- Render checkbox -->
+    <div *ngSwitchCase="'checkbox'">
+      <input type="checkbox" [formControlName]="control.name" class="form-check-input" id="{{ control.name }}"
+      placeholder="Example input">
+      <label class="form-check-label" for="{{ control.name }}">{{ control.label }}</label>
+      
+    </div>
+
+
+
+    <!-- Default case if the field type is not matched -->
+    <span *ngSwitchDefault>Unsupported field type</span>
+  </div>
+</div>

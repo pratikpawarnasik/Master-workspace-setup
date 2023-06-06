@@ -324,6 +324,39 @@
           }
         }
       }
+    },
+    "jsonFormTemplate": {
+      "projectType": "library",
+      "root": "projects/json-form-template",
+      "sourceRoot": "projects/json-form-template/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/json-form-template/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/json-form-template/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/json-form-template/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/json-form-template/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

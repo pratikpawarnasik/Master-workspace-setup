@@ -22,6 +22,9 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "paths": {
+      "jsonFormTemplate": [
+        "dist/json-form-template"
+      ],
       "my-lb": [
         "dist/my-lb"
       ],
