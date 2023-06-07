@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormHomeComponent } from './form-home.component';
+import { FormLibComponent } from './form-lib.component';
 
-describe('FormHomeComponent', () => {
-  let component: FormHomeComponent;
-  let fixture: ComponentFixture<FormHomeComponent>;
+describe('FormLibComponent', () => {
+  let component: FormLibComponent;
+  let fixture: ComponentFixture<FormLibComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormHomeComponent]
+      declarations: [FormLibComponent]
     });
-    fixture = TestBed.createComponent(FormHomeComponent);
+    fixture = TestBed.createComponent(FormLibComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

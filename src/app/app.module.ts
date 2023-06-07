@@ -18,7 +18,7 @@ import { ControlsComponent } from './modules/shared/components/dynamic-form/cont
 import { MyLibModule } from 'my-lib';
 import { HomeComponent } from './modules/shared/components/home/home.component';
 import { JsonFormTemplateModule } from "../../projects/json-form-template/src/lib/json-form-template.module";
-import { FormHomeComponent } from './modules/shared/components/dynamic-form/form-home/form-home.component';
+import { FormLibComponent } from './modules/shared/components/dynamic-form/form-lib/form-lib.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +29,7 @@ import { FormHomeComponent } from './modules/shared/components/dynamic-form/form
         ControlsComponent,
         HomeComponent,
         SharedComponent,
-        FormHomeComponent
+        FormLibComponent
     ],
     providers: [DynamicFormService],
     bootstrap: [AppComponent],

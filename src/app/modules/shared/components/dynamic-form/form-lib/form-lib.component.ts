@@ -15,12 +15,11 @@ export function createDynamicForm(formData: any): FormGroup {
   return new FormGroup(formGroup);
 }
 @Component({
-  selector: 'app-form-home',
-  templateUrl: './form-home.component.html',
-  styleUrls: ['./form-home.component.css']
+  selector: 'app-form-lib',
+  templateUrl: './form-lib.component.html',
+  styleUrls: ['./form-lib.component.css']
 })
-
-export class FormHomeComponent {
+export class FormLibComponent {
 
   @Input() formData: any; // Input property to receive formData from parent component
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
