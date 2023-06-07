@@ -6,9 +6,9 @@ import { DynamicFormComponent } from './modules/shared/components/dynamic-form/d
 import { SharedComponent } from './modules/shared/components/shared/shared.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'form', pathMatch: 'full' }, // Redirect to the 'home' route
+  { path: '', redirectTo: 'Form_WIP', pathMatch: 'full' }, // Redirect to the 'home' route
   { path: 'home', component: HomeComponent },
-  { path: 'form', component: DynamicFormComponent },
+  { path: 'Form_WIP', component: DynamicFormComponent },
   { path: 'library', component: SharedComponent },
 
   

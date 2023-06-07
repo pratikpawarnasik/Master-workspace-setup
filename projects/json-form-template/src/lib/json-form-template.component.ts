@@ -17,25 +17,31 @@ export function createDynamicForm(formData: any): FormGroup {
 @Component({
   selector: 'lib-jsonFormTemplate',
   template: `
-    <h2>Hello, welocme to TSI forms!</h2>
-    <div>
-      <h2>{{ formData.formName }}</h2>
-      <div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="container">
+    <h1 class="text-center">{{ formData.formName }}</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+      <div class="row">
         <ng-container *ngFor="let group of formData.formGroups">
-            <ng-container *ngFor="let control of group.fields">
-                <app-form-control [control]="control" [form]="form" [col]="group.col"></app-form-control>
-            </ng-container>
+          <ng-container *ngIf="group.col === 12">
+            <div [ngClass]="'col-md-' + group.col">
+              <ng-container *ngFor="let control of group.fields">
+                <app-form-control [control]="control" [form]="form"></app-form-control>
+              </ng-container>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="group.col === 6">
+            <div [ngClass]="'col-md-' + group.col" *ngFor="let control of group.fields">
+              <app-form-control [control]="control" [form]="form"></app-form-control>
+            </div>
+          </ng-container>
         </ng-container>
-
-          <div class="form-row">
-            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
-              {{ formData.actionButtons[0].lable }}
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+  
+      <div class="form-row">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ formData.actionButtons[0].lable }}</button>
+      </div>
+    </form>
+  </div>    
   `,
   styles: [
   ]
