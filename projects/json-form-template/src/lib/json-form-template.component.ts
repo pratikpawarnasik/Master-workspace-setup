@@ -1,19 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { createDynamicForm } from './form-control/form-control.component';
 
 
-export function createDynamicForm(formData: any): FormGroup {
-  const formGroup: { [key: string]: FormControl } = {};
-
-  formData.formGroups.forEach((group: { fields: any[] }) => {
-    group.fields.forEach((field: { required: any; name: string | number }) => {
-      const validators = field.required ? Validators.required : null;
-      formGroup[field.name] = new FormControl('', validators);
-    });
-  });
-
-  return new FormGroup(formGroup);
-}
 @Component({
   selector: 'lib-jsonFormTemplate',
   template: `

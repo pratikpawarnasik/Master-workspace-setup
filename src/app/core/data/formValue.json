@@ -22,13 +22,13 @@
           "type": "text",
           "name": "lastName",
           "label": "Last Name",
-          "required": true
+          "required": false
         },
         {
           "type": "email",
           "name": "email",
           "label": "Email",
-          "required": false
+          "required": true
         }
        
       ]
