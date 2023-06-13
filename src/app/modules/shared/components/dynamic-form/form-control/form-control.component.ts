@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 export function createDynamicForm(formData: any): FormGroup {
   const formGroup: { [key: string]: FormControl } = {};
@@ -15,12 +15,20 @@ export function createDynamicForm(formData: any): FormGroup {
           validators = Validators.required;
         }
       }
-
+      if (field.type === 'email') {
+        validators = validators ? Validators.compose([validators, emailValidator]) : emailValidator;
+      }
       formGroup[field.name] = new FormControl('', validators);
     });
   });
 
   return new FormGroup(formGroup);
+}
+function emailValidator(control: AbstractControl): ValidationErrors | null {
+  if (control.value && !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(control.value)) {
+    return { 'email': true };
+  }
+  return null;
 }
 @Component({
   selector: 'app-form-control',

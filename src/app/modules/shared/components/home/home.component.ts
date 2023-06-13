@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TsiformComponent  } from 'tsiform';
-import formJson from '../../../../core/data/formValue.json';
+// import formJson from '../../../../core/data/formValue.json';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import formJson from '../../../../core/data/formValue.json';
 })
 
 export class HomeComponent implements OnInit {
-  formData =formJson;
+  // formData =formJson;
   ngOnInit(): void {
   }
 

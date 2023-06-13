@@ -1,0 +1,76 @@
+{
+  "formName": "Benutzerregistrierung",
+  "actionButtons": [
+    {
+      "label": "Absenden",
+      "methodCall": "",
+      "callback": ""
+    }
+  ],
+  "formGroups": [
+    {
+      "groupName": "Persönliche Informationen",
+      "col": 6,
+      "fields": [
+        {
+          "type": "text",
+          "name": "firstName",
+          "label": "Vorname",
+          "required": true,
+          "value": ""
+        },
+        {
+          "type": "text",
+          "name": "lastName",
+          "label": "Nachname",
+          "required": false,
+          "value": ""
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "E-Mail",
+          "required": true,
+          "value": "",
+          "validators": [
+            {"type": "required", "error-message": "E-Mail ist erforderlich"},
+            {"type": "email", "error-message": "Falsches E-Mail-Format"}
+          ]
+        }
+      ]
+    },
+    {
+      "groupName": "Adresse",
+      "col": 12,
+      "fields": [
+        {
+          "type": "select",
+          "name": "country",
+          "label": "Land",
+          "required": true,
+          "options": [
+            "USA",
+            "Kanada",
+            "Großbritannien",
+            "Australien"
+          ],
+          "value": ""
+        },
+        {
+          "type": "textarea",
+          "name": "address",
+          "label": "Adresse",
+          "required": false,
+          "value": ""
+        },
+        {
+          "type": "checkbox",
+          "name": "checkmeout",
+          "label": "Überprüfen",
+          "required": true,
+          "value": false
+        }
+      ]
+    }
+  ]
+}

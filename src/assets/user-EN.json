@@ -2,7 +2,7 @@
   "formName": "User Registration",
   "actionButtons": [
     {
-      "lable": "Submit",
+      "label": "Submit",
       "methodCall": "",
       "callback": ""
     }
@@ -16,21 +16,26 @@
           "type": "text",
           "name": "firstName",
           "label": "First Name",
-          "required": true
+          "required": true,
+          "value": ""
         },
         {
           "type": "text",
           "name": "lastName",
           "label": "Last Name",
-          "required": false
+          "required": false,
+          "value": ""
         },
         {
           "type": "email",
           "name": "email",
           "label": "Email",
-          "required": true
+          "required": true,
+          "value": "",
+          "validators": [{"type":"required", "error-message":"Email is required"},
+          {"type":"email", "error-message":"Incorrect email format"}
+        ]
         }
-       
       ]
     },
     {
@@ -47,21 +52,22 @@
             "Canada",
             "UK",
             "Australia"
-          ]
+          ],
+          "value": ""
         },
         {
           "type": "textarea",
           "name": "address",
           "label": "Address",
-          "required": false
+          "required": false,
+          "value": ""
         },
-    
-        
         {
           "type": "checkbox",
           "name": "checkmeout",
           "label": "Check me out",
-          "required": true
+          "required": true,
+          "value": false
         }
       ]
     }

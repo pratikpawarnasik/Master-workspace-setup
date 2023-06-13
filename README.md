@@ -217,3 +217,7 @@ cd dist/json-form-template
 npm pack
 npm publish jsonFormTemplate-0.0.3.tgz
 npm publish jsonFormTemplate-0.0.1.tgz --registry=https://registry.npmjs.com/
+
+
+# Used below dependency to transform language.
+npm i @ngx-translate/core

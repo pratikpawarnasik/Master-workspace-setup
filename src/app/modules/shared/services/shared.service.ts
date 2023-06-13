@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +6,6 @@ import { Injectable } from '@angular/core';
 export class SharedService {
 
   constructor() { }
+
+  languageChange: EventEmitter<string> = new EventEmitter<string>();
 }

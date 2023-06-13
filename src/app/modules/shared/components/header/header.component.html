@@ -1,5 +1,5 @@
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<div class="toolbar float-left" role="banner">
     <img width="40" alt="Angular Logo"
         src="https://cdn.icon-icons.com/icons2/640/PNG/512/pininterest-social-media-letter-p-visual_icon-icons.com_59139.png" />
     <span>Welcome Patric!</span>
@@ -25,4 +25,27 @@
     </ul>
     <!-- <div class="spacer"></div> -->
 
+    <!-- <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+        <label class="btn btn-secondary">
+          <input type="radio" name="language" [ngModel]="selectedLanguage" (change)="onRadioButtonChange('EN')" autocomplete="off"> EN
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="language" [ngModel]="selectedLanguage" (change)="onRadioButtonChange('DE')" autocomplete="off"> DE
+        </label>
+      </div>     -->
+      <!-- <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+        <label class="btn btn-secondary" [class.active]="selectedLanguage === 'EN'">
+          <input type="radio" name="language" [(ngModel)]="selectedLanguage" (change)="onRadioButtonChange('EN')" autocomplete="off"> EN
+        </label>
+        <label class="btn btn-secondary" [class.active]="selectedLanguage === 'DE'">
+          <input type="radio" name="language" [(ngModel)]="selectedLanguage" (change)="onRadioButtonChange('DE')" autocomplete="off"> DE
+        </label>
+      </div> -->
+      <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+        <button class="btn btn-secondary" [ngClass]="{ 'active': selectedLanguage === 'EN' }" (click)="onLanguageButtonClick('EN')">EN</button>
+        <button class="btn btn-secondary" [ngClass]="{ 'active': selectedLanguage === 'DE' }" (click)="onLanguageButtonClick('DE')">DE</button>
+      </div>
+      
+      
+      
 </div>

@@ -7,7 +7,7 @@
     <!-- Render text input -->
     <div *ngSwitchCase="'text'">
       <input type="text" [formControlName]="control.name" class="form-control" id="{{ control.name }}"
-        placeholder="Example input">
+        placeholder="{{ control.label }}">
       <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
         <span *ngIf="form.get(control.name)?.errors?.['required']" [innerHTML]="getErrorMessage(control.name)"></span>
       </div> -->

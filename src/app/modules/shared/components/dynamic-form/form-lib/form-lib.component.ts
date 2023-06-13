@@ -32,4 +32,14 @@ export class FormLibComponent {
     }
   }
 
+  onRadioButtonChange(language: string) {
+  // Handle the selected language
+  console.log('Selected language:', language);
+
+  // Perform any other actions based on the selected language
+  // For example, you can use a translation service to change the language dynamically
+  // this.translateService.use(language);
+}
+
+
 }
