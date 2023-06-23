@@ -1,3 +1,3 @@
-<div class="container">
+<div *ngIf="formData" class="container">
     <lib-jsonFormTemplate  [formData]="formData" (formSubmitted)="handleFormSubmitted($event)"></lib-jsonFormTemplate>
   </div>

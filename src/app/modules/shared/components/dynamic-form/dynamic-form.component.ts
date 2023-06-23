@@ -48,21 +48,28 @@ export class DynamicFormComponent implements OnInit {
     // Perform any other actions based on the selected language
   }
 
+
+
   handleFormSubmitted(response: any) {
-    let storedFormData = localStorage.getItem('formData');
-    let formDataArray = storedFormData ? JSON.parse(storedFormData) : [];
 
-    // Push the new form data object into the array
-    formDataArray.push(response);
-
-    // Convert the updated form data array to a JSON string
-    const updatedFormDataJson = JSON.stringify(formDataArray);
-
-    // Save the updated form data array in the local storage
-    localStorage.setItem('formData', updatedFormDataJson);
-
-    // // Verify the updated JSON data
-    console.log('Updated JSON data:', updatedFormDataJson);
+    if (this.formData) {
+      // Update the form JSON object with the form data values
+      for (const group of this.formData.formGroups) {
+        for (const field of group.fields) {
+          if (field.name in response) {
+            field.value = response[field.name];
+          }
+        }
+      }
+    }
+  
+    // Convert the updated form JSON object to a JSON string
+    const updatedFormJson = JSON.stringify(this.formData);
+  
+    // Save the updated form JSON object in local storage
+    localStorage.setItem('formJson', updatedFormJson);
+  
+    console.log('Updated form JSON:', this.formData);
   }
 
 

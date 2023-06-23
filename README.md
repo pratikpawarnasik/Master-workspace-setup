@@ -203,7 +203,7 @@ npm link json-form-template
 cd ..
 cd ..
 npm install ./dist/json-form-template
-
+ng s
 
 ng build jsonFormTemplate
 ng s
@@ -215,7 +215,7 @@ To build and publish jsonFormTemplate
 ng build jsonFormTemplate --configuration=production
 cd dist/json-form-template
 npm pack
-npm publish jsonFormTemplate-0.0.3.tgz
+npm publish jsonFormTemplate-0.0.4.tgz
 npm publish jsonFormTemplate-0.0.1.tgz --registry=https://registry.npmjs.com/
 
 

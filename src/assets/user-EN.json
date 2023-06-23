@@ -17,7 +17,14 @@
           "name": "firstName",
           "label": "First Name",
           "required": true,
-          "value": ""
+          "value": "",
+          "class": "p-2",
+          "validatonPattern": "",
+          "placeHolder": "First Name",
+          "minLength":"",
+          "maxLength":"",
+          "infoIcon" : "tooltipmessage"
+
         },
         {
           "type": "text",
