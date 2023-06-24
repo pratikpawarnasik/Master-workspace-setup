@@ -3,56 +3,28 @@
     <label *ngIf="control.type !== 'checkbox'" for="{{ control.name }}">{{ control.label }}
       <span *ngIf="control.required">*</span>
     </label>
-
-    <!-- Render text input -->
-    <div *ngSwitchCase="'text'">
-      <input type="text" [formControlName]="control.name" class="form-control" id="{{ control.name }}"
-        placeholder="{{ control.label }}">
-      <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
-        <span *ngIf="form.get(control.name)?.errors?.['required']" [innerHTML]="getErrorMessage(control.name)"></span>
-      </div> -->
-    </div>
-
-    <!-- Render email input -->
-    <div *ngSwitchCase="'email'">
-      <input [type]="'email'" [formControlName]="control.name" class="form-control"
-        [ngClass]="{'error': control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched}">
-      <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
-        <span *ngIf="form.get(control.name)?.errors?.['email']">Invalid email format</span>
-        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
-      </div> -->
-    </div>
+    <!-- Render input -->
+      <app-input *ngSwitchCase="control.type === 'text' || control.type === 'email' ? control.type : '' "  [control]="control" [form]="form" />
 
     <!-- Render select dropdown -->
-    <div *ngSwitchCase="'select'">
-      <select [formControlName]="control.name" class="form-control">
-        <option value="">Select an option</option>
-        <option *ngFor="let option of control.options" [value]="option">{{ option }}</option>
-      </select>
-      <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
-        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span><br />
-      </div> -->
-    </div>
+      <app-select *ngSwitchCase="'select'" [control]="control" [form]="form" />
 
     <!-- Render textarea -->
-    <div *ngSwitchCase="'textarea'">
-      <textarea class="form-control" [formControlName]="control.name" rows="4" cols="50"></textarea>
-      <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
-        <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
-      </div> -->
-    </div>
+      <app-textarea *ngSwitchCase="'textarea'" [control]="control" [form]="form" />
+
+    <!-- Render datalist -->
+    <app-datalist *ngSwitchCase="'datalist'" [control]="control" [form]="form" />
+
+    <!-- Render radio -->
+    <app-radio *ngSwitchCase="'radio'" [control]="control" [form]="form" />
 
     <!-- Render checkbox -->
-    <div *ngSwitchCase="'checkbox'" class="form-group col-md-{{ col }}">
-      <div class="form-check">
-        <input type="checkbox" [formControlName]="control.name" class="form-check-input" id="{{ control.name }}"
-          placeholder="Example input">
-        <label class="form-check-label" for="{{ control.name }}">{{ control.label }}</label>
-      </div>
-    </div>
+    <app-checkbox *ngSwitchCase="'checkbox'" class="form-group  ol-md-{{ col }}"[control]="control" [form]="form" />
     
+
     <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
-      <span *ngIf="form.get(control.name)?.errors?.['required']" [innerHTML]="getErrorMessage(control.name, control.label)"></span>
+      <span *ngIf="form.get(control.name)?.errors?.['required']"
+        [innerHTML]="getErrorMessage(control.name, control.label)"></span>
     </div>
     <!-- Default case if the field type is not matched -->
     <span *ngSwitchDefault>Unsupported field type</span>

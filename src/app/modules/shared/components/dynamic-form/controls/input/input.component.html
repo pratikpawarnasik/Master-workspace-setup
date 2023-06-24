@@ -1,0 +1,25 @@
+<div [formGroup]="form">
+    <div [ngSwitch]="control.type">
+        <!-- Render text input -->
+        <div *ngSwitchCase="'text'">
+            <input type="text" 
+            [formControlName]="control.name" 
+            class="form-control" 
+            id="{{ control.name }}"
+            placeholder="{{ control.label }}"
+            data-toggle="tooltip" 
+            title="{{control.infoIcon}}"
+            >
+        </div>
+
+        <!-- Render email input -->
+        <div *ngSwitchCase="'email'">
+            <input [type]="'email'" [formControlName]="control.name" class="form-control"
+                [ngClass]="{'error': control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched}">
+            <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+          <span *ngIf="form.get(control.name)?.errors?.['email']">Invalid email format</span>
+          <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span>
+        </div> -->
+        </div>
+    </div>
+</div>

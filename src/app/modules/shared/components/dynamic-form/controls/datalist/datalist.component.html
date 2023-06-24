@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+    <!-- <input type="text" [formControlName]="control.name" class="form-control" id="{{ control.name }}"
+        placeholder="{{ control.label }}" [autocomplete]="control.name + '_autocomplete'" list="browsers">
+     -->
+    <input list="browsers" [formControlName]="control.name" class="form-control" placeholder="{{ control.label }}">
+    <!-- <datalist [id]="control.name + '_autocomplete'"> -->
+    <datalist id="browsers">
+        <option *ngFor="let option of control.options" [value]="option">{{ option }}</option>
+    </datalist>
+</div>

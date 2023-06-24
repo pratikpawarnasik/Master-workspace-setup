@@ -1,33 +1,38 @@
 <div class="container">
-  
-  
+
+
   <h1 class="text-center my-4">{{ formData.formName }}</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <div class="row ">
       <ng-container *ngFor="let group of formData.formGroups; let last = last">
-       
-          <div class="col-12 ">
+        <legend>{{ group.groupName }}</legend>
+        <!-- <div class="col-12 ">
             <h4 class="form-group-name text-primary"><samp>{{ group.groupName }}</samp></h4>
+          </div> -->
+        <ng-container *ngIf="group.col === 12">
+          <div class="col-md-12 form-group" *ngFor="let control of group.fields">
+            <app-form-control [control]="control" [form]="form"></app-form-control>
           </div>
-          <ng-container *ngIf="group.col === 12">
-            <div class="col-md-12 form-group">
-              <ng-container *ngFor="let control of group.fields">
-                <app-form-control [control]="control" [form]="form"></app-form-control>
-              </ng-container>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="group.col === 6">
-            <div class="col-md-6 form-group" *ngFor="let control of group.fields">
-              <app-form-control [control]="control" [form]="form"></app-form-control>
-            </div>
-          </ng-container>
-          <div ngClass="border-bottom bor-sep"  class="col-12 mb-4 "> </div>
+        </ng-container>
+        <ng-container *ngIf="group.col === 6">
+          <div class="col-md-6 form-group" *ngFor="let control of group.fields">
+            <app-form-control [control]="control" [form]="form"></app-form-control>
+          </div>
+        </ng-container>
+        <div ngClass="border-bottom bor-sep" class="col-12 mb-4 "> </div>
       </ng-container>
     </div>
+    
 
-    <div class="form-row">
-      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ formData.actionButtons[0].label
-        }}</button>
-    </div>
+    <div class="form-row button-row" >
+      <ng-container *ngFor="let group of formData.actionButtons;">
+      <button *ngIf="group.name === 'submit'" type="submit" class="btn {{group.class}}" [disabled]="!form.valid">{{ group.label }}</button>
+      <button *ngIf="group.name != 'submit'" (click)="form.reset()" [formControlName]="group.name" class="btn {{group.class}}">{{ group.label }}</button>
+    </ng-container>
+  </div>
+   
+        
+    
+    
   </form>
 </div>

@@ -14,12 +14,19 @@ import { DynamicFormComponent } from './modules/shared/components/dynamic-form/d
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormService } from './core/services/dynamic-form.service';
 import { FormControlComponent } from './modules/shared/components/dynamic-form/form-control/form-control.component';
-import { ControlsComponent } from './modules/shared/components/dynamic-form/controls/controls.component';
+// import { ControlsComponent } from './modules/shared/components/dynamic-form/controls/inputControls.component';
 import { MyLibModule } from 'my-lib';
 import { HomeComponent } from './modules/shared/components/home/home.component';
 import { JsonFormTemplateModule } from "../../projects/json-form-template/src/lib/json-form-template.module";
 import { FormLibComponent } from './modules/shared/components/dynamic-form/form-lib/form-lib.component';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from './modules/shared/components/dynamic-form/controls/input/input.component';
+import { ButtonComponent } from './modules/shared/components/dynamic-form/controls/button/button.component';
+import { SelectComponent } from './modules/shared/components/dynamic-form/controls/select/select.component';
+import { TextareaComponent } from './modules/shared/components/dynamic-form/controls/textarea/textarea.component';
+import { DatalistComponent } from './modules/shared/components/dynamic-form/controls/datalist/datalist.component';
+import { RadioComponent } from './modules/shared/components/dynamic-form/controls/radio/radio.component';
+import { CheckboxComponent } from './modules/shared/components/dynamic-form/controls/checkbox/checkbox.component';
 // import { JsonFormTemplateModule } from 'jsonFormTemplate';
 @NgModule({
     declarations: [
@@ -28,10 +35,17 @@ import { FormsModule } from '@angular/forms';
         HeaderComponent,
         DynamicFormComponent,
         FormControlComponent,
-        ControlsComponent,
+        // ControlsComponent,
         HomeComponent,
         SharedComponent,
-        FormLibComponent
+        FormLibComponent,
+        InputComponent,
+        ButtonComponent,
+        SelectComponent,
+        TextareaComponent,
+        DatalistComponent,
+        RadioComponent,
+        CheckboxComponent
     ],
     providers: [DynamicFormService],
     bootstrap: [AppComponent],

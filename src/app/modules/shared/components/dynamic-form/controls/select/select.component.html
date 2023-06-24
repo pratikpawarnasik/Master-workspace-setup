@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+    <select [formControlName]="control.name" class="form-control" [multiple]="control.isMultiple">
+    <option value="">Select an option</option>
+    <option *ngFor="let option of control.options" [value]="option">{{ option }}</option>
+  </select>
+  <!-- <div *ngIf="control.required && form.get(control.name)?.invalid && form.get(control.name)?.touched">
+    <span *ngIf="form.get(control.name)?.errors?.['required']">This field is required</span><br />
+  </div> -->
+  
+</div>

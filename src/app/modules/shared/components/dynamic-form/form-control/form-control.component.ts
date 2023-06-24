@@ -44,7 +44,6 @@ export class FormControlComponent {
 
   
   getErrorMessage(controlName: string, _label: string): string {
-    console.log("controlName::", controlName);
     
     const control = this.form.get(controlName)!;
     let errorMessage = '';

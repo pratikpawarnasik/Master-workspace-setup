@@ -1,10 +1,16 @@
 {
   "formName": "User Registration",
   "actionButtons": [
+    
     {
+      "name": "reset",
+      "label": "Reset",
+      "class": " btn-warning "
+    },
+    {
+      "name": "submit",
       "label": "Submit",
-      "methodCall": "",
-      "callback": ""
+      "class": " btn-primary"
     }
   ],
   "formGroups": [
@@ -21,9 +27,9 @@
           "class": "p-2",
           "validatonPattern": "",
           "placeHolder": "First Name",
-          "minLength":"",
-          "maxLength":"",
-          "infoIcon" : "tooltipmessage"
+          "minLength":"5",
+          "maxLength":"15",
+          "infoIcon" : "First Name."
 
         },
         {
@@ -31,7 +37,8 @@
           "name": "lastName",
           "label": "Last Name",
           "required": false,
-          "value": ""
+          "value": "",
+          "infoIcon" : "Last Name."
         },
         {
           "type": "email",
@@ -54,6 +61,21 @@
           "name": "country",
           "label": "Country",
           "required": true,
+          "isMultiple": false,
+          "options": [
+            "USA",
+            "Canada",
+            "UK",
+            "Australia"
+          ],
+          "value": ""
+        },
+        {
+          "type": "select",
+          "name": "countrymult",
+          "label": "CountryMult",
+          "required": true,
+          "isMultiple": true,
           "options": [
             "USA",
             "Canada",
@@ -69,6 +91,38 @@
           "required": false,
           "value": ""
         },
+        {
+          "name": "radio_input",
+          "label": "Radio Input",
+          "type": "radio",
+          "required": true,
+          "options": [
+            {
+              "label": "Option 1",
+              "value": "option1"
+            },
+            {
+              "label": "Option 2",
+              "value": "option2"
+            },
+            {
+              "label": "Option 3",
+              "value": "option3"
+            }
+          ]
+        },
+        {
+          "name": "datalist_input",
+          "label": "Datalist Input",
+          "type": "datalist",
+          "required": false,
+          "options": [
+            "Option 1",
+            "Option 2",
+            "Option 3"
+          ]
+        },
+       
         {
           "type": "checkbox",
           "name": "checkmeout",
